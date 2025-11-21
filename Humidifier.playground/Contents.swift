@@ -7,19 +7,18 @@ class Humidifier {
     var timer: Timer?
     var count: Int = 0
     var quantityDecreasePer1Seconds: Int = 1
-    let humidityLowerLimit: Int = 35 // 最低湿度
     
     func start() {
         timer = Timer.scheduledTimer(
             timeInterval: 1, // タイマーの実行間隔(n秒)
             target: self,
-            selector: #selector(countup), // TimerInterval毎に実行
+            selector: #selector(countUp), // TimerInterval毎に実行
             userInfo: nil,
             repeats: true // 繰り返し処理を実行したい場合はtrue
         )
     }
     // Timerクラスに設定するメソッドは「＠objc」をつける
-    @objc func countup() {
+    @objc func countUp() {
         // Countで増減する値の設定
         count += 1
         print("加湿器が起動してから\(count)秒経過しました")
@@ -37,7 +36,7 @@ class Humidifier {
     var humidifier = HumidifierModel(
         humidity: 34,
         waterTank: 300,
-        waterRemaining: 5
+        waterRemaining: 5,
     )
     // 加湿器情報
     struct HumidifierModel {
@@ -91,7 +90,7 @@ class Humidifier {
     }
     
     /// 加湿器の操作
-    func operation(power: Power, supply: WaterSupply) -> Bool {
+    func isOperable(power: Power, supply: WaterSupply) -> Bool {
         guard power.powerSwitch(model: humidifier) == true else {
             print("電源がOFFになっています")
             return false
@@ -110,7 +109,7 @@ class Humidifier {
 }
 
 let humidifier = Humidifier()
-let canStart = humidifier.operation(power: .off, supply: .specifiedQuantity(10))
+let canStart = humidifier.isOperable(power: .off, supply: .specifiedQuantity(10))
 if canStart {
     humidifier.start()
 }
