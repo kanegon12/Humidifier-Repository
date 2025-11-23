@@ -39,22 +39,6 @@ class Humidifier {
         }
     }
     
-//    // 加湿器
-//    var humidifier = HumidifierModel(
-//        humidity: 34,
-//        waterTank: 300,
-//       waterRemaining: 5,
-//    )
-//    // 加湿器情報
-//    struct HumidifierModel {
-//        let humidity: Int // 湿度 %
-//        let waterTank: Int // タンク総量 mL
-//        var waterRemaining: Int // 現在の水量 mL
-//        var waterTankRemaining: Int {
-//            waterTank - waterRemaining
-//        } // タンクの空き容量 mL
-//    }
-    
     let humidifier = HumidifierModel(
          humidity: 34,
          waterTank: 300
